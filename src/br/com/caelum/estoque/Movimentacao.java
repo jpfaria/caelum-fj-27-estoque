@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Movimentacao {
@@ -19,13 +20,18 @@ public class Movimentacao {
 	private Long id;
 	
 	@Temporal(TemporalType.DATE)
+	@NotNull
 	private Calendar data;
 	
 	@Enumerated(EnumType.STRING)
 	private TipoDeMovimento tipo;
 	
+	@NotNull
 	private Integer quantidade;
 	
+	@ManyToOne
+	private Produto produto;
+
 	public Long getId() {
 		return id;
 	}
@@ -65,9 +71,5 @@ public class Movimentacao {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-
-	@ManyToOne
-	private Produto produto;
-	
 	
 }

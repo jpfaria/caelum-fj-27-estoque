@@ -7,6 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 @Entity
 public class Produto {
@@ -15,7 +19,10 @@ public class Produto {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotEmpty
 	private String descricao;
+	
+	@NotNull
 	private Integer quantidade;
 	
 	@OneToMany(mappedBy="produto")
