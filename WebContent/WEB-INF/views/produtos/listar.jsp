@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<c:if test="${mensagem}"><p>${mensagem}</p></c:if>
+	<p>${mensagem}</p>
 	
 	<c:forEach items="${produtoList}" var="produto">
 		${produto.descricao} - ${produto.quantidade} - 
