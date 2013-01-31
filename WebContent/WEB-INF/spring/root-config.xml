@@ -14,6 +14,8 @@
 	
 	<tx:annotation-driven />
 	
+	<aop:aspectj-autoproxy />
+	
 	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />  -->
 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >

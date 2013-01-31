@@ -23,6 +23,7 @@ import br.com.caelum.estoque.service.GeradorDeMovimentacao;
 //@Scope("request") // processa a todo request
 @Controller
 @RequestMapping(value="/produtos")
+@Transactional
 public class ProdutosController {
 
 	@Autowired
@@ -76,12 +77,17 @@ public class ProdutosController {
 	
 	@RequestMapping(value="/alterar", method=RequestMethod.POST)
 	@Transactional
-	public String alterar(@Valid Produto produto) {
+	public String alterar(@Valid Produto produto, BindingResult result) {
+		
+		if (result.hasErrors()) {
+			return "produtos/editar";
+		}
 		
 		Movimentacao movimentacao = geradorDeMovimentacao.geraMovimentacao(produto);
 		movimentacaoDAO.salvar(movimentacao);
 		produtoDAO.alterar(produto);
 		return "redirect:/produtos/listar";
+		
 	}
 	
 	@RequestMapping(value="/editar/{id}", method=RequestMethod.GET)
@@ -110,7 +116,7 @@ public class ProdutosController {
 	/* forma correta */
 	@RequestMapping(value="/salvar", method=RequestMethod.POST)
 	@Transactional
-	public String salvar(@Valid Produto produto, RedirectAttributes ra, BindingResult result) {
+	public String salvar(@Valid Produto produto, BindingResult result, RedirectAttributes ra) {
 		
 		if (result.hasErrors()) {
 			return "produtos/form";
