@@ -13,7 +13,7 @@
 	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/app-config.xml</param-value>
+		<param-value>/WEB-INF/spring/root-config.xml</param-value>
 	</context-param>
 	
 	<filter>
@@ -34,7 +34,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/spring/empty.xml
+				/WEB-INF/spring/springmvc-config.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
