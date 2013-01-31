@@ -27,6 +27,7 @@
 		
 		<dependency org="mysql" name="mysql-connector-java" rev="5.1.22" conf="runtime->default"/>
 		
+		<!-- <dependency org="commons-jelly" name="commons-jelly-tags-fmt" rev="20040902.072321" conf="runtime->default"/>  -->
 		<dependency org="commons-dbcp" name="commons-dbcp" rev="20030825.184428" conf="runtime->default"/>
 		<dependency org="commons-collections" name="commons-collections" rev="20040616" conf="runtime->default"/>
 		<dependency org="commons-pool" name="commons-pool" rev="20030825.183949" conf="runtime->default"/>

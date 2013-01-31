@@ -1,5 +1,7 @@
 package br.com.caelum.estoque.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,10 +24,10 @@ public class ProdutosController {
 
 	@Autowired
 	//@Qualifier("produtoHibernateDAO") // modifica implementacao padrao
-	ProdutoDAO produtoDAO;
+	private ProdutoDAO produtoDAO;
 	
 	@Autowired
-	GeradorDeMovimentacao geradorDeMovimentacao;
+	private GeradorDeMovimentacao geradorDeMovimentacao;
 	
 	@Autowired
 	private MovimentacaoDAO movimentacaoDAO;
@@ -51,8 +53,15 @@ public class ProdutosController {
 	@RequestMapping(value="/mostrar/{id}", method=RequestMethod.GET)
 	public ModelAndView mostrar(@PathVariable("id") Long id) {
 		
+		/*
+		Produto produto = produtoDAO.buscarPorId(id);
+		List<Movimentacao> movimentacoes = produto.getMovimentacoes();
+		movimentacoes.size();
+		*/
+		
 		ModelAndView modelAndView = new ModelAndView("produtos/mostrar");
 		modelAndView.addObject(produtoDAO.buscarPorId(id));
+		//modelAndView.addObject(movimentacoes);
 		
 		return modelAndView;
 	}
