@@ -20,6 +20,8 @@
 		
 		<dependency org="jstl" name="jstl" rev="1.2" conf="runtime->default"/>
 		
+		<dependency org="log4j" name="log4j" rev="1.2.17" conf="runtime->default"/>
+		
 		<dependency org="org.hibernate" name="hibernate-core" rev="4.1.9.Final" conf="runtime->default"/>
 		<dependency org="org.hibernate" name="hibernate-entitymanager" rev="4.1.9.Final" conf="runtime->default"/>
 		<dependency org="org.hibernate" name="hibernate-validator" rev="4.3.1.Final" conf="runtime->default"/>
