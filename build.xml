@@ -1,0 +1,62 @@
+<project name="caelum-fj-27-estoque" default="init" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<property file="build.properties" />
+
+	<property name="classes.dir" value="${build.dir}/classes" />
+	<property name="lib.dir" value="WebContent/WEB-INF/lib" />
+
+	<property name="ivy.jar.dir" value="${basedir}/ivy" />
+	<property name="ivy.jar.format" value="[artifact]-[revision]-[type].[ext]" />
+	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy-${ivy.install.version}.jar" />
+
+	<!-- INICIALIZACAO DO PROJETO -->
+
+	<target name="init" description="Initial configuration">
+		<antcall target="resolve-dependencies" />
+	</target>
+	
+	<!-- Ivy -->
+
+	<target name="download-ivy" unless="skip.download" description="Download ivy">
+		<mkdir dir="${ivy.jar.dir}" />
+		<get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true" />
+	</target>
+
+	<target name="configure-ivy" description="Configure Ivy">
+		<path id="ivy.lib.path">
+			<fileset dir="${ivy.jar.dir}" includes="*.jar" />
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path" />
+	</target>
+
+	<target name="install-ivy" depends="download-ivy, configure-ivy" description="Install Ivy" />
+
+	<target name="clean-ivy" description="Clean the ivy installation">
+		<delete dir="${ivy.jar.dir}" />
+	</target>
+
+	<target name="clean-ivy-cache" depends="install-ivy" description="Clean the ivy cache">
+		<ivy:cleancache />
+	</target>
+
+	<!-- DEPENDENCIAS -->
+
+	<target name="resolve-dependencies" depends="install-ivy, clean-dependencies" description="Resolve dependencies">
+		<ivy:retrieve pattern="${lib.dir}/${ivy.jar.format}" conf="runtime"/>
+	</target>
+
+	<target name="clean-dependencies" description="Clean dependencies">
+		<delete dir="${lib.dir}" />
+		<mkdir dir="${lib.dir}" />
+	</target>
+
+	<!-- CLEAN -->
+
+	<target name="clean" description="Clean the project">
+		<delete includeemptydirs="true" quiet="true">
+			<fileset dir="${build.dir}" />
+			<fileset dir="${lib.dir}" />
+		</delete>
+	</target>
+
+</project>
