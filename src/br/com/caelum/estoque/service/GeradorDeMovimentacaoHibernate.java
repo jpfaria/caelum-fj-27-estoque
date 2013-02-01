@@ -17,11 +17,11 @@ import br.com.caelum.estoque.repository.Produtos;
 @Primary
 public class GeradorDeMovimentacaoHibernate implements GeradorDeMovimentacao {
 
-	private final Produtos produtoDAO;
+	private final Produtos produtos;
 
 	@Autowired
 	public GeradorDeMovimentacaoHibernate(Produtos produtoDAO) {
-		this.produtoDAO = produtoDAO;
+		this.produtos = produtoDAO;
 	}
 
 	/* (non-Javadoc)
@@ -34,7 +34,7 @@ public class GeradorDeMovimentacaoHibernate implements GeradorDeMovimentacao {
 		mov.setData(Calendar.getInstance());
 		mov.setProduto(produto);
 
-		Integer quantidadeAtual = produtoDAO.estoqueAtual(produto);
+		Integer quantidadeAtual = produtos.estoqueAtual(produto);
 		if (produto.getQuantidade() > quantidadeAtual) {
 			mov.setTipo(TipoDeMovimento.ENTRADA);
 		} else {
