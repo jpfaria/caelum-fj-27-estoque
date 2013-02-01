@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @SuppressWarnings("serial")
 @Entity
-public class Usuario implements UserDetails{
+public class Usuario implements UserDetails {
 
 	@Id
 	@GeneratedValue

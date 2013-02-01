@@ -4,15 +4,19 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.caelum.estoque.entity.Usuario;
 import br.com.caelum.estoque.repository.Usuarios;
 
+@Repository
 public class UsuariosHibernate implements Usuarios {
 
-private final SessionFactory factory;
+	private final SessionFactory factory;
 	
 	@Autowired
 	public UsuariosHibernate(SessionFactory factory) {
@@ -20,10 +24,11 @@ private final SessionFactory factory;
 	}
 	
 	@Override
+	@Transactional
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		
-		List<Usuario> usuarios = factory.getCurrentSession()
+		List usuarios = factory.getCurrentSession()
 				.createQuery("from Usuario where login = :login").setParameter("login", username).list();
 		
 		if (!usuarios.isEmpty()) {

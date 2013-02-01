@@ -13,12 +13,13 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<context:component-scan base-package="br.com.caelum.estoque" />
-	
+	<mvc:annotation-driven />
 	<tx:annotation-driven />
-	
 	<aop:aspectj-autoproxy />
 	
 	<!-- <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />  -->
+
+	<!-- Hibernate -->
 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" >
 	
@@ -52,9 +53,13 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 	
 	</bean>
 	
+	<!--  Transaction  -->
+	
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<!--  Pool  -->
 	
 	<bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource">
 	
@@ -64,5 +69,25 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 		<property name="password" value="" />
 	
 	</bean>
+	
+	<!--  Spring Security -->
+	
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="usuariosHibernate" />
+	</security:authentication-manager>
+
+	<security:http auto-config="true">
+	
+		<security:intercept-url pattern="/produtos/**" access="ROLE_USER" />
+
+		<security:form-login 
+			login-page="/login-form"
+			always-use-default-target="true" 
+			default-target-url="/produtos/listar"
+			login-processing-url="/login" />
+			
+		<security:logout logout-url="/logout" logout-success-url="/login-form"/>
+			
+	</security:http>
 		
 </beans>
