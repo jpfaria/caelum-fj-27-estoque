@@ -42,10 +42,10 @@ http://www.springframework.org/schema/security http://www.springframework.org/sc
 		<property name="annotatedClasses">
 		
 			<list>
-				<value>br.com.caelum.estoque.model.Produto</value>
-				<value>br.com.caelum.estoque.model.Movimentacao</value>
-				<value>br.com.caelum.estoque.model.Usuario</value>
-				<value>br.com.caelum.estoque.model.Grupo</value>
+				<value>br.com.caelum.estoque.entity.Produto</value>
+				<value>br.com.caelum.estoque.entity.Movimentacao</value>
+				<value>br.com.caelum.estoque.entity.Usuario</value>
+				<value>br.com.caelum.estoque.entity.Grupo</value>
 			</list>
 		
 		</property>
