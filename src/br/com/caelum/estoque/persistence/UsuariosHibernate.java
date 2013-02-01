@@ -10,10 +10,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.caelum.estoque.entity.Usuario;
 import br.com.caelum.estoque.repository.Usuarios;
 
 @Repository
+@Transactional
+@Primary
 public class UsuariosHibernate implements Usuarios {
 
 	private final SessionFactory factory;
@@ -24,11 +25,10 @@ public class UsuariosHibernate implements Usuarios {
 	}
 	
 	@Override
-	@Transactional
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		
-		List usuarios = factory.getCurrentSession()
+		List<Usuarios> usuarios = factory.getCurrentSession()
 				.createQuery("from Usuario where login = :login").setParameter("login", username).list();
 		
 		if (!usuarios.isEmpty()) {
