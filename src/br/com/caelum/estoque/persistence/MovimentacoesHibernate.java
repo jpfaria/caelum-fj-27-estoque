@@ -1,4 +1,4 @@
-package br.com.caelum.estoque.dao;
+package br.com.caelum.estoque.persistence;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,17 +6,18 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.caelum.estoque.Movimentacao;
+import br.com.caelum.estoque.entity.Movimentacao;
+import br.com.caelum.estoque.repository.Movimentacoes;
 
 @Repository
 @Primary
 @Transactional
-public class MovimentacaoHibernateDAO implements MovimentacaoDAO {
+public class MovimentacoesHibernate implements Movimentacoes {
 
 	private final SessionFactory factory;
 	
 	@Autowired
-	public MovimentacaoHibernateDAO(SessionFactory factory) {
+	public MovimentacoesHibernate(SessionFactory factory) {
 		this.factory = factory;
 	}
 	

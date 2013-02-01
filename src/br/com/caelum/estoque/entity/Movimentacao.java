@@ -1,4 +1,4 @@
-package br.com.caelum.estoque;
+package br.com.caelum.estoque.entity;
 
 import java.util.Calendar;
 

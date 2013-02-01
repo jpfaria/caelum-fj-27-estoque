@@ -1,7 +1,7 @@
 package br.com.caelum.estoque.service;
 
-import br.com.caelum.estoque.Movimentacao;
-import br.com.caelum.estoque.Produto;
+import br.com.caelum.estoque.entity.Movimentacao;
+import br.com.caelum.estoque.entity.Produto;
 
 public interface GeradorDeMovimentacao {
 

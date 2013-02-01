@@ -1,10 +1,10 @@
-package br.com.caelum.estoque.dao;
+package br.com.caelum.estoque.repository;
 
 import java.util.List;
 
-import br.com.caelum.estoque.Produto;
+import br.com.caelum.estoque.entity.Produto;
 
-public interface ProdutoDAO {
+public interface Produtos {
 	void salvar(Produto produuto);
 	void alterar(Produto produto);
 	List<Produto> listar();

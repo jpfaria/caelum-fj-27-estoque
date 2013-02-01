@@ -7,20 +7,20 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.caelum.estoque.Movimentacao;
-import br.com.caelum.estoque.Produto;
-import br.com.caelum.estoque.TipoDeMovimento;
-import br.com.caelum.estoque.dao.ProdutoDAO;
+import br.com.caelum.estoque.entity.Movimentacao;
+import br.com.caelum.estoque.entity.Produto;
+import br.com.caelum.estoque.entity.TipoDeMovimento;
+import br.com.caelum.estoque.repository.Produtos;
 
 @Service
 @Transactional
 @Primary
 public class GeradorDeMovimentacaoHibernate implements GeradorDeMovimentacao {
 
-	private final ProdutoDAO produtoDAO;
+	private final Produtos produtoDAO;
 
 	@Autowired
-	public GeradorDeMovimentacaoHibernate(ProdutoDAO produtoDAO) {
+	public GeradorDeMovimentacaoHibernate(Produtos produtoDAO) {
 		this.produtoDAO = produtoDAO;
 	}
 

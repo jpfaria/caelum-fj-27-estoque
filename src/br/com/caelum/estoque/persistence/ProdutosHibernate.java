@@ -1,4 +1,4 @@
-package br.com.caelum.estoque.dao;
+package br.com.caelum.estoque.persistence;
 
 import java.util.List;
 
@@ -9,18 +9,19 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.caelum.estoque.Produto;
+import br.com.caelum.estoque.entity.Produto;
+import br.com.caelum.estoque.repository.Produtos;
 
 @Repository
 @Primary
 // define implementacao padrao no spring
 @Transactional
-public class ProdutoHibernateDAO implements ProdutoDAO {
+public class ProdutosHibernate implements Produtos {
 
 	private SessionFactory factory;
 
 	@Autowired
-	public ProdutoHibernateDAO(SessionFactory factory) {
+	public ProdutosHibernate(SessionFactory factory) {
 		this.factory = factory;
 	}
 

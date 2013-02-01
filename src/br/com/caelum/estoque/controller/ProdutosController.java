@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.caelum.estoque.Movimentacao;
-import br.com.caelum.estoque.Produto;
-import br.com.caelum.estoque.dao.MovimentacaoDAO;
-import br.com.caelum.estoque.dao.ProdutoDAO;
+import br.com.caelum.estoque.entity.Movimentacao;
+import br.com.caelum.estoque.entity.Produto;
+import br.com.caelum.estoque.repository.Movimentacoes;
+import br.com.caelum.estoque.repository.Produtos;
 import br.com.caelum.estoque.service.GeradorDeMovimentacao;
 
 //@Scope("request") // processa a todo request
@@ -28,13 +28,13 @@ public class ProdutosController {
 
 	@Autowired
 	//@Qualifier("produtoHibernateDAO") // modifica implementacao padrao
-	private ProdutoDAO produtoDAO;
+	private Produtos produtoDAO;
 	
 	@Autowired
 	private GeradorDeMovimentacao geradorDeMovimentacao;
 	
 	@Autowired
-	private MovimentacaoDAO movimentacaoDAO;
+	private Movimentacoes movimentacaoDAO;
 	
 	ProdutosController() {
 		//System.out.println("echo aqui");

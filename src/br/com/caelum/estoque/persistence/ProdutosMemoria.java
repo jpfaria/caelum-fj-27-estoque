@@ -1,18 +1,19 @@
-package br.com.caelum.estoque.dao;
+package br.com.caelum.estoque.persistence;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import br.com.caelum.estoque.Produto;
+import br.com.caelum.estoque.entity.Produto;
+import br.com.caelum.estoque.repository.Produtos;
 
 @Component
-public class ProdutoMemoriaDAO implements ProdutoDAO {
+public class ProdutosMemoria implements Produtos {
 
 	private List<Produto> produtos = new ArrayList<Produto>();
 	
-	public ProdutoMemoriaDAO() {
+	public ProdutosMemoria() {
 		Produto produto = new Produto();
 		produto.setId(1L);
 		produto.setDescricao("Mac Book");
