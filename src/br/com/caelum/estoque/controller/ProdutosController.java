@@ -1,7 +1,5 @@
 package br.com.caelum.estoque.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,15 +55,15 @@ public class ProdutosController {
 	@RequestMapping(value="/mostrar/{id}", method=RequestMethod.GET)
 	public ModelAndView mostrar(@PathVariable("id") Long id) {
 		
+		ModelAndView modelAndView = new ModelAndView("produtos/mostrar");
+		modelAndView.addObject(produtoDAO.buscarPorId(id));
+		
 		/*
 		Produto produto = produtoDAO.buscarPorId(id);
 		List<Movimentacao> movimentacoes = produto.getMovimentacoes();
 		movimentacoes.size();
+		modelAndView.addObject(movimentacoes);
 		*/
-		
-		ModelAndView modelAndView = new ModelAndView("produtos/mostrar");
-		modelAndView.addObject(produtoDAO.buscarPorId(id));
-		//modelAndView.addObject(movimentacoes);
 		
 		return modelAndView;
 	}
