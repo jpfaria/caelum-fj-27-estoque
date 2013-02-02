@@ -28,6 +28,7 @@ public class UsuariosHibernate implements Usuarios {
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		
+		@SuppressWarnings("unchecked")
 		List<Usuarios> usuarios = factory.getCurrentSession()
 				.createQuery("from Usuario where login = :login").setParameter("login", username).list();
 		
