@@ -1,4 +1,5 @@
-/lib/*
-/bin/*
-/ivy/*
-*.class
+WebContent/WEB-INF/lib
+bin/
+build/
+ivy/
+lib/
