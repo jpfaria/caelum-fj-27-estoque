@@ -1,5 +1,5 @@
 WebContent/WEB-INF/lib
 bin/
-build/
+build/*
 ivy/
 lib/
